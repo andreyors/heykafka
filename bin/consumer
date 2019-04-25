@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'heykafka'
+
+runner = ::HeyKafka::Runner.new
+runner.parse! ARGV
+runner.execute
