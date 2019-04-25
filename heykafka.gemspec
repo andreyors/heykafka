@@ -23,14 +23,13 @@ Gem::Specification.new do |spec|
   # end
   spec.files         = Dir['**/**/*']
 
-  spec.bindir        = 'bin'
+  spec.bindir        = 'exe'
   spec.executables   = %w[consumer]
   spec.require_paths = %w[lib]
 
   spec.required_ruby_version = '>= 2.4.4'
 
   spec.add_runtime_dependency 'ruby-kafka', '~> 0.6'
-  spec.add_runtime_dependency 'zeitwerk', '~> 2.1.5'
 
   spec.add_development_dependency 'bundler', '~> 1.17.3'
   spec.add_development_dependency 'rake', '~> 11.3'
