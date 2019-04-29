@@ -6,7 +6,7 @@ require 'heykafka/producer'
 require 'heykafka/runner'
 require 'heykafka/version'
 
-module Heykafka
+module HeyKafka
   class Error < StandardError
   end
 end

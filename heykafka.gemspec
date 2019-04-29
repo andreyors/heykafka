@@ -7,7 +7,7 @@ require 'heykafka/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'heykafka'
-  spec.version       = ::Heykafka::VERSION
+  spec.version       = ::HeyKafka::VERSION
   spec.platform      = Gem::Platform::RUBY
 
   spec.authors       = ['Andrey Orsoev']

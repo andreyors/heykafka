@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Heykafka do
+RSpec.describe HeyKafka do
   it 'has a version number' do
-    expect(Heykafka::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
+    expect(HeyKafka::VERSION).
+      not_to be nil
   end
 end

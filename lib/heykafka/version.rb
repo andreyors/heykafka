@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Heykafka
+module HeyKafka
   VERSION = '0.1.1'
 end

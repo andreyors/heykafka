@@ -1,4 +1,43 @@
 require: rubocop-performance
 
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - bin/**/*
+    - Gemfile
+    - Rakefile
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
 Metrics/LineLength:
   Max: 120
+
+Metrics/BlockLength:
+  Exclude: []
+  ExcludedMethods:
+    - draw
+    - concern
+    - scope
+    - create_table
+    - namespace
+    - task
+    - define
+    - factory
+    - trait
+    - describe
+    - context
+    - it
+    - shared_examples_for
+    - shared_context
+    - guard
+    - source
+
+Style/SignalException:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
