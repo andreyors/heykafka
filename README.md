@@ -22,7 +22,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+We are using environment variables to provide credentials to client.
+
+- `KAFKA_SERVER`, it specifies the broker connection string 
+- `KAFKA_CLIENT_ID`
+
+### Producer
+`HeyKafka::Producer.send_message(message: 'some payload', topic: 'event_detected')`    
+
+### Consumer
+
+Place into following folder '/app/consumers/' 
+
+```
+module Consumers
+  class TestConsumer < ::HeyKafka::Consumer
+    def topic
+      'test'
+    end
+
+    def process(payload)
+      Rails.logger.info "Test Consumer is active, payload: #{JSON.parse(payload)}"
+    end
+  end
+end  
+```
+
+### Consumer runner
+
+`consumer <consumer-name>` (e.g. `consumer test`)
 
 ## Development
 

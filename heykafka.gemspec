@@ -29,6 +29,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4.4'
 
+  spec.add_runtime_dependency 'logger', '~> 1.3.0'
+  spec.add_runtime_dependency 'json-schema', '~> 2.8.0'
   spec.add_runtime_dependency 'ruby-kafka', '~> 0.6'
 
   spec.add_development_dependency 'bundler', '~> 1.17.3'

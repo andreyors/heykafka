@@ -13,27 +13,23 @@ Bundler/OrderedGems:
 Layout/DotPosition:
   EnforcedStyle: trailing
 
+Metrics/AbcSize:
+  Max: 25
+  
 Metrics/LineLength:
   Max: 120
 
 Metrics/BlockLength:
   Exclude: []
   ExcludedMethods:
-    - draw
-    - concern
-    - scope
-    - create_table
-    - namespace
-    - task
-    - define
-    - factory
-    - trait
     - describe
+    - fdescribe
     - context
+    - fcontext
     - it
+    - fit
     - shared_examples_for
     - shared_context
-    - guard
     - source
 
 Style/SignalException:

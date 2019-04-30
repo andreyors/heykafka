@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe HeyKafka::Client do
   let(:client) { described_class.new }
+  let(:logger) { instance_double(::Logger) }
 
   describe '#connect' do
     subject { client.connect }
@@ -12,6 +13,13 @@ RSpec.describe HeyKafka::Client do
       allow(Kafka).
         to receive(:new).
         with([server_url], client_id: client_id)
+
+      allow(::Logger).
+        to receive(:new).
+        and_return(logger)
+
+      allow(logger).
+        to receive(:info)
     end
 
     context 'when no credentials were provided' do
@@ -21,6 +29,14 @@ RSpec.describe HeyKafka::Client do
       it 'makes a call' do
         expect(Kafka).
           to receive(:new)
+
+        subject
+      end
+
+      it 'logs after connection to client created' do
+        expect(logger).
+          to receive(:info).
+          with("Connected client to broker #{server_url}")
 
         subject
       end
@@ -38,13 +54,21 @@ RSpec.describe HeyKafka::Client do
 
         allow(ENV).
           to receive(:[]).
-          with('KAFKA_CLIENT').
+          with('KAFKA_CLIENT_ID').
           and_return(client_id)
       end
 
       it 'makes a call' do
         expect(Kafka).
           to receive(:new)
+
+        subject
+      end
+
+      it 'logs after connection to client created' do
+        expect(logger).
+          to receive(:info).
+          with("Connected client to broker #{server_url}")
 
         subject
       end

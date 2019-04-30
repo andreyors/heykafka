@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.fdescribe HeyKafka::Consumer do
+RSpec.describe HeyKafka::Consumer do
   let(:consumer) { described_class.new }
 
   describe '#topic' do
@@ -19,11 +19,7 @@ RSpec.fdescribe HeyKafka::Consumer do
 
     it 'throws an error' do
       expect { subject }.
-          to raise_error NotImplementedError, 'Please implement topic'
+        to raise_error NotImplementedError, 'Please implement topic'
     end
-  end
-
-  describe '#run' do
-    
   end
 end
