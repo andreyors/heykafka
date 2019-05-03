@@ -1,33 +1,33 @@
 version: 2.1
 
 defaults:
-  bundle_env: &bundle_env
-    environment:
-      BUNDLE_JOBS: 7
-        BUNDLE_RETRY: 3
-        BUNDLE_PATH: vendor/bundle
+  default_bundle_env: &default_bundle_env
+  environment:
+    BUNDLE_JOBS: 7
+    BUNDLE_RETRY: 3
+    BUNDLE_PATH: vendor/bundle
 
   default_job: &default_job
-    steps:
-      - checkout
-      - build
-      - test
+  steps:
+    - checkout
+    - build
+    - test
 
 executors:
   ruby-2-4-4:
     docker:
       - image: circleci/ruby:2.4.4
-        <<: *bundle_env
+        <<: *default_bundle_env
 
   ruby-2-5-5:
     docker:
       - image: circleci/ruby:2.5.5
-        <<: *bundle_env
+        <<: *default_bundle_env
 
   ruby-2-6-3:
     docker:
       - image: circleci/ruby:2.6.3
-        <<: *bundle_env
+        <<: *default_bundle_env
 
 commands:
   build:
