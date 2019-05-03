@@ -1,4 +1,4 @@
-version: 2.1
+version: '2.1'
 
 orbs:
   slack: circleci/slack@2.5.0
@@ -45,11 +45,14 @@ commands:
   test:
     description: 'Run rspec'
     steps:
-      - run: COV=true bundle exec rspec
+      - run: COV=true bundle exec rspec -format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - slack/status:
           fail_only: 'true'
+      - store_test_results:
+          path: /tmp/test-results
       - store_artifacts:
-          path: coverage
+          path: /tmp/test-results
+          destination: test-results
 
 jobs:
   test-2-4-4:
