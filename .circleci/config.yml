@@ -37,7 +37,7 @@ commands:
     steps:
       - restore_cache:
           key: gem-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ checksum "Gemfile" }}
-      - run: bundle install
+      - run: bundle check || bundle install
       - save_cache:
           key: gem-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ checksum "Gemfile" }}
           paths:
@@ -48,6 +48,8 @@ commands:
       - run: COV=true bundle exec rspec
       - slack/status:
           fail_only: 'true'
+      - store_artifacts:
+          path: coverage
 
 jobs:
   test-2-4-4:
