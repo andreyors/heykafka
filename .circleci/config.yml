@@ -16,11 +16,10 @@ commands:
     description: 'Install gems'
     steps:
       - run: bundle install
-
   test:
     description: 'Run rspec'
-      steps:
-        - run: COV=true rspec
+    steps:
+      - run: COV=true rspec
 
 jobs:
   test-2.4.4:
