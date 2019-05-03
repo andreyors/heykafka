@@ -20,7 +20,7 @@ commands:
 
 jobs:
   test-2-4-4:
-    executor: ruby-2.4.4
+    executor: ruby-2-4-4
     steps:
       - checkout
       - build
