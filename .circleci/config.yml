@@ -27,7 +27,7 @@ commands:
       - save_cache:
           key: gem-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ checksum "Gemfile" }}
           paths:
-            - vendor/bundle
+            - ./vendor/bundle
   test:
     description: 'Run rspec'
     steps:
