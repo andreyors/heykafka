@@ -45,10 +45,9 @@ commands:
   test:
     description: 'Run rspec'
     steps:
-      - type: shell
-        command: |
-          mkdir /tmp/test-results
-          bundle exec rspec --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+      - run: bundle exec rspec --format RspecJunitFormatter \
+                               --out /tmp/test-results/rspec.xml \
+                               --format progress
       - slack/status:
           fail_only: 'true'
       - store_test_results:
