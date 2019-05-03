@@ -1,17 +1,17 @@
 version: 2.1
 
-defaults:
-  default_bundle_env: &default_bundle_env
-  environment:
-    BUNDLE_JOBS: 7
-    BUNDLE_RETRY: 3
-    BUNDLE_PATH: vendor/bundle
 
-  default_job: &default_job
-  steps:
-    - checkout
-    - build
-    - test
+default_bundle_env: &default_bundle_env
+environment:
+  BUNDLE_JOBS: 7
+  BUNDLE_RETRY: 3
+  BUNDLE_PATH: vendor/bundle
+
+default_job: &default_job
+steps:
+  - checkout
+  - build
+  - test
 
 executors:
   ruby-2-4-4:
