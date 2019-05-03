@@ -22,11 +22,11 @@ commands:
     description: 'Install gems'
     steps:
       - restore_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ checksum "Gemfile" }}
 
       - run: bundle install
       - save_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ checksum "Gemfile" }}
           paths:
             - vendor/bundle
   test:
