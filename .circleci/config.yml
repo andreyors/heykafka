@@ -4,17 +4,35 @@ executors:
   ruby-2-4-4:
     docker:
       - image: circleci/ruby:2.4.4
+        environment:
+          BUNDLE_JOBS: 7
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+
   ruby-2-6-3:
     docker:
       - image: circleci/ruby:2.6.3
+        environment:
+          BUNDLE_JOBS: 7
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
 
 commands:
   build:
     description: 'Install gems'
     steps:
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
       - run: bundle install
+      - save_cache:
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
   test:
     description: 'Run rspec'
+    parallelism: 4
     steps:
       - run: COV=true rspec
 
