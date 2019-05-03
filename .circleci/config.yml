@@ -12,6 +12,8 @@ default_bundle_env: &default_bundle_env
 default_job: &default_job
   steps:
     - checkout
+    - setup_remote_docker:
+        docker_layer_caching: true
     - build
     - test
 
