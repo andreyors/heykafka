@@ -23,7 +23,6 @@ commands:
     steps:
       - restore_cache:
           key: gem-cache-v1-{{ checksum "Gemfile" }}
-
       - run: bundle install
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile" }}
@@ -32,7 +31,7 @@ commands:
   test:
     description: 'Run rspec'
     steps:
-      - run: COV=true rspec
+      - run: COV=true bundle exec rspec
 
 jobs:
   test-2-4-4:
