@@ -1,6 +1,8 @@
 version: 2.1
 
-
+orbs:
+  slack: circleci/slack@2.5.0
+  
 default_bundle_env: &default_bundle_env
   environment:
     BUNDLE_JOBS: 7
@@ -44,6 +46,8 @@ commands:
     description: 'Run rspec'
     steps:
       - run: COV=true bundle exec rspec
+      - slack/notify:
+          message: 'Hello'
 
 jobs:
   test-2-4-4:
