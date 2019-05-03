@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+
+if defined? ENV['COV']
+  require 'simplecov'
+end
+
 require 'heykafka'
 
 RSpec.configure do |config|
@@ -25,16 +30,17 @@ RSpec.configure do |config|
   config.order = :random
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-end
 
-def suppress_output
-  allow(STDOUT).
-    to receive(:puts)
+  original_stdout = $stdout.clone
+  original_stderr = $stderr.clone
 
-  logger = double(Logger).
-    as_null_object
+  config.before(:each) do
+    $stderr.reopen File.new('/dev/null', 'w')
+    $stdout.reopen File.new('/dev/null', 'w')
+  end
 
-  allow(Logger).
-    to receive(:new).
-    and_return(logger)
+  config.after(:each) do
+    $stdout.reopen original_stdout
+    $stderr.reopen original_stderr
+  end
 end

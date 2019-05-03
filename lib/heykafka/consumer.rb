@@ -35,7 +35,7 @@ module HeyKafka
     private
 
     def client
-      ::HeyKafka::Client.new.connect
+      @client ||= ::HeyKafka::Client.new.connect
     end
 
     def validator
@@ -43,7 +43,7 @@ module HeyKafka
     end
 
     def logger
-      @logger ||= ::Logger.new(STDOUT)
+      ::Logger.new(STDOUT)
     end
 
     def listen

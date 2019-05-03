@@ -9,7 +9,9 @@ module HeyKafka
       raise LoadError, "Cannot find #{name} consumer in #{CONSUMER_PATH}" unless File.exist? file
 
       require file
-      ::Consumers.const_get("#{name.capitalize}Consumer").new
+
+      consumer = ::Object.const_get("::Consumers::#{name.capitalize}Consumer")
+      consumer.new
     end
 
     private

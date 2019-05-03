@@ -15,10 +15,6 @@ RSpec.describe ::HeyKafka::ConsumerRunner do
     end
     let(:argument) { 'test' }
 
-    before do
-      suppress_output
-    end
-
     context 'when correct argument provided' do
       let(:logger) { instance_double(Logger) }
       let(:loader) { instance_double(::HeyKafka::Loader) }
